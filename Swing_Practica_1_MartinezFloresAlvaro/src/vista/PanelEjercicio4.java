@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.Color; // <-- Importar Color
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -24,9 +24,7 @@ public class PanelEjercicio4 extends JPanel implements ChangeListener {
 
 	public PanelEjercicio4() {
 
-		// Borde con color
-		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.RED), // Color del borde
-				"Ejercicio4")); // Título
+		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.RED), "Ejercicio4"));
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -58,4 +56,4 @@ public class PanelEjercicio4 extends JPanel implements ChangeListener {
 		}
 		lblTexto.setFont(new Font(fuenteOriginal.getName(), fuenteOriginal.getStyle(), nuevoTamanio));
 	}
-} // <-- YA NO HAY LLAVE EXTRA
+}

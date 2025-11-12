@@ -1,7 +1,7 @@
 package vista;
 
-import java.awt.Color; // <-- Importar Color
-import java.awt.Image; // <-- Importar Image para escalar
+import java.awt.Color;
+import java.awt.Image;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -22,18 +22,14 @@ public class PanelEjercicio5 extends JPanel implements ChangeListener {
 	private JLabel lblImg3;
 	private JLabel lblImg4;
 
-	// Tamaño para escalar las imágenes
-	private static final int IMG_ANCHO = 100;
-	private static final int IMG_ALTO = 100;
+	private static final int IMG_ANCHO = 50;
+	private static final int IMG_ALTO = 50;
 
 	public PanelEjercicio5() {
-		// Borde con color
-		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), // Color del borde
-				"Ejercicio5")); // Título
+		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "Ejercicio5"));
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		// --- 1. Crear el panel de controles (Label + Spinner) ---
 		JPanel panelControles = new JPanel();
 		JLabel lblPregunta = new JLabel("¿Cuántas imágenes quieres mostrar?");
 		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, 0, 4, 1);
@@ -42,7 +38,6 @@ public class PanelEjercicio5 extends JPanel implements ChangeListener {
 		panelControles.add(lblPregunta);
 		panelControles.add(spinnerImagenes);
 
-		// --- 2. Cargar y ESCALAR Iconos ---
 		ImageIcon icon1 = escalarIcono(new ImageIcon(getClass().getResource("/recursos/animal1.png")), IMG_ANCHO,
 				IMG_ALTO);
 		ImageIcon icon2 = escalarIcono(new ImageIcon(getClass().getResource("/recursos/animal2.png")), IMG_ANCHO,
@@ -57,18 +52,15 @@ public class PanelEjercicio5 extends JPanel implements ChangeListener {
 		lblImg3 = new JLabel(icon3);
 		lblImg4 = new JLabel(icon4);
 
-		// --- 3. Crear el panel que contendrá las imágenes ---
 		panelDeImagenes = new JPanel();
 		panelDeImagenes.add(lblImg1);
 		panelDeImagenes.add(lblImg2);
 		panelDeImagenes.add(lblImg3);
 		panelDeImagenes.add(lblImg4);
 
-		// --- 4. Añadir los paneles principales a 'this' ---
 		this.add(panelControles);
 		this.add(panelDeImagenes);
 
-		// --- 5. Estado inicial ---
 		actualizarVisibilidadImagenes();
 	}
 

@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box; // <-- IMPORTANTE: Para el "Vertical Glue"
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,7 +28,6 @@ public class Ventana extends JFrame implements ActionListener {
 		super("Practica01_Compendio");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// --- 1. Instanciar paneles ---
 		panelTitulo = new PanelTitulo();
 		panelMenuLateral = new PanelMenuLateral();
 		panelInferior = new PanelInferior();
@@ -40,20 +39,14 @@ public class Ventana extends JFrame implements ActionListener {
 		panelEjercicio4 = new PanelEjercicio4();
 		panelEjercicio5 = new PanelEjercicio5();
 
-		// --- 2. Ensamblar la ventana ---
-
-		// ARREGLO BOTONES ESTIRADOS (WEST):
-		// Creamos un panel "wrapper" que usa FlowLayout (por defecto)
-		// y que no estirará nuestro panel de botones.
 		JPanel wrapperBotones = new JPanel();
 		wrapperBotones.add(panelMenuLateral);
 
 		this.add(panelTitulo, BorderLayout.NORTH);
-		this.add(wrapperBotones, BorderLayout.WEST); // <-- Añadimos el wrapper
+		this.add(wrapperBotones, BorderLayout.WEST);
 		this.add(panelCentral, BorderLayout.CENTER);
 		this.add(panelInferior, BorderLayout.SOUTH);
 
-		// --- 3. AÑADIR LOS LISTENERS ---
 		panelMenuLateral.getBtnEjer1().addActionListener(this);
 		panelMenuLateral.getBtnEjer2().addActionListener(this);
 		panelMenuLateral.getBtnEjer3().addActionListener(this);
@@ -61,10 +54,9 @@ public class Ventana extends JFrame implements ActionListener {
 		panelMenuLateral.getBtnEjer5().addActionListener(this);
 		panelInferior.getBtnEjerciciosActivos().addActionListener(this);
 
-		// --- 4. Configuración final y visibilidad ---
 		this.setMinimumSize(new Dimension(800, 600));
 		this.setLocationRelativeTo(null);
-		gestionarVisibilidadPaneles(); // Carga inicial
+		gestionarVisibilidadPaneles();
 		this.setVisible(true);
 	}
 
@@ -98,15 +90,10 @@ public class Ventana extends JFrame implements ActionListener {
 			panelCentral.add(panelEjercicio5);
 		}
 
-		// ARREGLO PANELES ESTIRADOS (CENTER):
-		// Añadimos "pegamento" vertical. Es un componente invisible
-		// que se estira para ocupar todo el espacio sobrante,
-		// empujando los paneles de ejercicio hacia arriba.
 		panelCentral.add(Box.createVerticalGlue());
 
-		// Comprobamos si solo queda el "pegamento" (o sea, 0 ejercicios)
 		if (panelCentral.getComponentCount() == 1) {
-			panelCentral.removeAll(); // Lo quitamos
+			panelCentral.removeAll();
 			panelCentral.add(new JLabel("Aquí se mostrarán los ejercicios"));
 		}
 

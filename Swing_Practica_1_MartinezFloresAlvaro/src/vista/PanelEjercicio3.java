@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.Color; // <-- Importar Color
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,9 +28,7 @@ public class PanelEjercicio3 extends JPanel implements ActionListener {
 
 	public PanelEjercicio3() {
 
-		// Borde con color
-		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE), // Color del borde
-				"Ejercicio3")); // Título
+		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE), "Ejercicio3"));
 
 		lblTexto = new JLabel("En un lugar de la Mancha, de cuyo nombre...");
 		fuenteOriginal = lblTexto.getFont();
@@ -79,4 +77,4 @@ public class PanelEjercicio3 extends JPanel implements ActionListener {
 		}
 		lblTexto.setFont(new Font(fuenteOriginal.getName(), fuenteOriginal.getStyle(), nuevoTamanio));
 	}
-} // <-- YA NO HAY LLAVE EXTRA
+}

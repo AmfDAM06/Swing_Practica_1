@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.Color; // <-- Importar Color
+import java.awt.Color; // 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
@@ -20,11 +20,8 @@ public class PanelEjercicio2 extends JPanel implements ActionListener {
 
 	public PanelEjercicio2() {
 
-		// Borde con color
-		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW.darker()), // Color
-																												// del
-																												// borde
-				"Ejercicio2")); // Título
+		this.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW.darker()), "Ejercicio2"));
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -44,4 +41,4 @@ public class PanelEjercicio2 extends JPanel implements ActionListener {
 		Font nuevaFuente = new Font(nombreFuenteSeleccionada, fuenteOriginal.getStyle(), fuenteOriginal.getSize());
 		lblTexto.setFont(nuevaFuente);
 	}
-} // <-- YA NO HAY LLAVE EXTRA
+}

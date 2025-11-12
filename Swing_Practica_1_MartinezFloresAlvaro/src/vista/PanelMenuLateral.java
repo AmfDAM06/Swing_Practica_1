@@ -56,4 +56,4 @@ public class PanelMenuLateral extends JPanel {
 	public JToggleButton getBtnEjer5() {
 		return btnEjer5;
 	}
-} // <-- YA NO HAY LLAVE EXTRA
+}

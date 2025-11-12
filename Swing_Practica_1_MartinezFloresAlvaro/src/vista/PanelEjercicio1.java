@@ -19,11 +19,8 @@ public class PanelEjercicio1 extends JPanel implements ActionListener {
 
 	public PanelEjercicio1() {
 
-		// Borde con color
-		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW.darker()), // Color
-																												// del
-																												// borde
-				"Ejercicio1")); // Título
+		this.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW.darker()), "Ejercicio1"));
 
 		lblTexto = new JLabel("En un lugar de la Mancha, de cuyo nombre...");
 		chkNegrita = new JCheckBox("Negrita");
@@ -53,4 +50,4 @@ public class PanelEjercicio1 extends JPanel implements ActionListener {
 		}
 		lblTexto.setFont(new Font(fuenteOriginal.getName(), estilo, fuenteOriginal.getSize()));
 	}
-} // <-- YA NO HAY LLAVE EXTRA
+}
