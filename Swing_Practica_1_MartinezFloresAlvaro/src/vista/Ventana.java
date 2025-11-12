@@ -5,15 +5,15 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box; // <-- IMPORTANTE: Para el "Vertical Glue"
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane; // <-- 1. IMPORTAR JOPTIONPANE
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Ventana extends JFrame implements ActionListener {
 
-	// (Atributos de paneles...)
 	private PanelTitulo panelTitulo;
 	private PanelMenuLateral panelMenuLateral;
 	private JPanel panelCentral;
@@ -25,7 +25,8 @@ public class Ventana extends JFrame implements ActionListener {
 	private PanelEjercicio5 panelEjercicio5;
 
 	public Ventana() {
-		// ... (super(), setDefaultCloseOperation()...)
+		super("Practica01_Compendio");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// --- 1. Instanciar paneles ---
 		panelTitulo = new PanelTitulo();
@@ -40,8 +41,15 @@ public class Ventana extends JFrame implements ActionListener {
 		panelEjercicio5 = new PanelEjercicio5();
 
 		// --- 2. Ensamblar la ventana ---
+
+		// ARREGLO BOTONES ESTIRADOS (WEST):
+		// Creamos un panel "wrapper" que usa FlowLayout (por defecto)
+		// y que no estirará nuestro panel de botones.
+		JPanel wrapperBotones = new JPanel();
+		wrapperBotones.add(panelMenuLateral);
+
 		this.add(panelTitulo, BorderLayout.NORTH);
-		this.add(panelMenuLateral, BorderLayout.WEST);
+		this.add(wrapperBotones, BorderLayout.WEST); // <-- Añadimos el wrapper
 		this.add(panelCentral, BorderLayout.CENTER);
 		this.add(panelInferior, BorderLayout.SOUTH);
 
@@ -51,8 +59,6 @@ public class Ventana extends JFrame implements ActionListener {
 		panelMenuLateral.getBtnEjer3().addActionListener(this);
 		panelMenuLateral.getBtnEjer4().addActionListener(this);
 		panelMenuLateral.getBtnEjer5().addActionListener(this);
-
-		// 2. AÑADIR EL LISTENER AL NUEVO BOTÓN
 		panelInferior.getBtnEjerciciosActivos().addActionListener(this);
 
 		// --- 4. Configuración final y visibilidad ---
@@ -62,27 +68,18 @@ public class Ventana extends JFrame implements ActionListener {
 		this.setVisible(true);
 	}
 
-	// 3. ACTUALIZAR EL MÉTODO ACTIONPERFORMED
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		// Comprobamos QUÉ botón se ha pulsado
 		Object fuenteDelEvento = e.getSource();
 
 		if (fuenteDelEvento == panelInferior.getBtnEjerciciosActivos()) {
-			// Si es el botón "Ejercicios Activos"...
 			mostrarEjerciciosActivos();
 		} else {
-			// Si es cualquier otro botón (los JToggleButton)...
 			gestionarVisibilidadPaneles();
 		}
 	}
 
-	/**
-	 * Muestra/oculta paneles en el panelCentral.
-	 */
 	private void gestionarVisibilidadPaneles() {
-
 		panelCentral.removeAll();
 
 		if (panelMenuLateral.getBtnEjer1().isSelected()) {
@@ -101,7 +98,15 @@ public class Ventana extends JFrame implements ActionListener {
 			panelCentral.add(panelEjercicio5);
 		}
 
-		if (panelCentral.getComponentCount() == 0) {
+		// ARREGLO PANELES ESTIRADOS (CENTER):
+		// Añadimos "pegamento" vertical. Es un componente invisible
+		// que se estira para ocupar todo el espacio sobrante,
+		// empujando los paneles de ejercicio hacia arriba.
+		panelCentral.add(Box.createVerticalGlue());
+
+		// Comprobamos si solo queda el "pegamento" (o sea, 0 ejercicios)
+		if (panelCentral.getComponentCount() == 1) {
+			panelCentral.removeAll(); // Lo quitamos
 			panelCentral.add(new JLabel("Aquí se mostrarán los ejercicios"));
 		}
 
@@ -109,12 +114,7 @@ public class Ventana extends JFrame implements ActionListener {
 		panelCentral.repaint();
 	}
 
-	// 4. AÑADIR ESTE NUEVO MÉTODO
-	/**
-	 * Construye una lista de ejercicios activos y la muestra en un JOptionPane.
-	 */
 	private void mostrarEjerciciosActivos() {
-		// Usamos StringBuilder para construir el texto eficientemente
 		StringBuilder lista = new StringBuilder();
 		lista.append("Ejercicios activos:\n\n");
 
@@ -141,16 +141,10 @@ public class Ventana extends JFrame implements ActionListener {
 			contador++;
 		}
 
-		// Comprobamos si no había ninguno seleccionado
 		if (contador == 0) {
 			lista.append("Ningún ejercicio activo.");
 		}
 
-		// Mostramos el diálogo (Temario 3) [cite: 1478]
-		JOptionPane.showMessageDialog(this, // El componente padre (la ventana)
-				lista.toString(), // El mensaje
-				"EJERCICIOS ACTIVOS", // Título de la ventana del diálogo
-				JOptionPane.INFORMATION_MESSAGE // El icono (la 'i' azul)
-		);
+		JOptionPane.showMessageDialog(this, lista.toString(), "EJERCICIOS ACTIVOS", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
