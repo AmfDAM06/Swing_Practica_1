@@ -1,11 +1,13 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Component; 
+import java.awt.FlowLayout; 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout; 
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,16 +30,32 @@ public class PanelEjercicio3 extends JPanel implements ActionListener {
 
 	public PanelEjercicio3() {
 
-		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE), "Ejercicio3"));
+		this.setBorder(BorderFactory.createTitledBorder(
+						BorderFactory.createLineBorder(Color.BLUE), 
+						"Ejercicio3"));
 
+		// 1. Usamos BoxLayout(Y_AXIS) para apilar verticalmente
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+		// 2. Crear los componentes
 		lblTexto = new JLabel("En un lugar de la Mancha, de cuyo nombre...");
 		fuenteOriginal = lblTexto.getFont();
+		lblTexto.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinear texto
 
 		radioPequenio = new JRadioButton("Pequeño");
 		radioMediano = new JRadioButton("Mediano");
 		radioGrande = new JRadioButton("Grande");
 		radioMuyGrande = new JRadioButton("Muy Grande");
 
+		// 3. Panel INTERNO para los radios (alineado a la izquierda)
+		JPanel panelRadios = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panelRadios.add(radioPequenio);
+		panelRadios.add(radioMediano);
+		panelRadios.add(radioGrande);
+		panelRadios.add(radioMuyGrande);
+		panelRadios.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinear panel
+
+		// 4. Lógica de ButtonGroup y Listeners
 		grupoRadios = new ButtonGroup();
 		grupoRadios.add(radioPequenio);
 		grupoRadios.add(radioMediano);
@@ -52,11 +70,9 @@ public class PanelEjercicio3 extends JPanel implements ActionListener {
 		radioGrande.addActionListener(this);
 		radioMuyGrande.addActionListener(this);
 
+		// 5. Añadir componentes al panel (verticalmente)
 		this.add(lblTexto);
-		this.add(radioPequenio);
-		this.add(radioMediano);
-		this.add(radioGrande);
-		this.add(radioMuyGrande);
+		this.add(panelRadios);
 	}
 
 	@Override
