@@ -7,7 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout; 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -44,13 +44,19 @@ public class PanelEjercicio3 extends JPanel implements ActionListener {
 		radioMediano = new JRadioButton("Mediano");
 		radioGrande = new JRadioButton("Grande");
 		radioMuyGrande = new JRadioButton("Muy Grande");
+		
+		radioPequenio.setOpaque(false);
+		radioMediano.setOpaque(false);
+		radioGrande.setOpaque(false);
+		radioMuyGrande.setOpaque(false);
 
-		JPanel panelRadios = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panelRadios = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0)); // 0 gaps
 		panelRadios.add(radioPequenio);
 		panelRadios.add(radioMediano);
 		panelRadios.add(radioGrande);
 		panelRadios.add(radioMuyGrande);
 		panelRadios.setAlignmentX(Component.LEFT_ALIGNMENT); 
+		panelRadios.setOpaque(false); 
 
 		grupoRadios = new ButtonGroup();
 		grupoRadios.add(radioPequenio);

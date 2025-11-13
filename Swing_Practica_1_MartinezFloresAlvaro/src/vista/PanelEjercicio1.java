@@ -1,13 +1,13 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Component; 
-import java.awt.FlowLayout; 
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout; 
+import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +20,6 @@ public class PanelEjercicio1 extends JPanel implements ActionListener {
 	private Font fuenteOriginal;
 
 	public PanelEjercicio1() {
-
 		this.setBorder(BorderFactory.createTitledBorder(
 						BorderFactory.createLineBorder(Color.YELLOW.darker()), 
 						"Ejercicio1")); 
@@ -35,9 +34,11 @@ public class PanelEjercicio1 extends JPanel implements ActionListener {
 		chkNegrita.addActionListener(this);
 		chkCursiva.addActionListener(this);
 
-		JPanel panelControles = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panelControles = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0)); // 0 gaps
 		panelControles.add(chkNegrita);
 		panelControles.add(chkCursiva);
+		
+		panelControles.setOpaque(false); 
 		
 		panelControles.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lblTexto.setAlignmentX(Component.LEFT_ALIGNMENT);
