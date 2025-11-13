@@ -25,30 +25,23 @@ public class PanelEjercicio1 extends JPanel implements ActionListener {
 						BorderFactory.createLineBorder(Color.YELLOW.darker()), 
 						"Ejercicio1")); 
 		
-		// 1. Usamos BoxLayout(Y_AXIS) para apilar verticalmente
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		// 2. Crear los componentes
 		lblTexto = new JLabel("En un lugar de la Mancha, de cuyo nombre...");
 		chkNegrita = new JCheckBox("Negrita");
 		chkCursiva = new JCheckBox("Cursiva");
 		fuenteOriginal = lblTexto.getFont();
 
-		// 3. Añadir Listeners
 		chkNegrita.addActionListener(this);
 		chkCursiva.addActionListener(this);
 
-		// 4. Panel INTERNO para los checkboxes (alineado a la izquierda)
 		JPanel panelControles = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panelControles.add(chkNegrita);
 		panelControles.add(chkCursiva);
 		
-		// 5. Alinear los componentes internos a la izquierda
-		// (Para que no se centren dentro del BoxLayout)
 		panelControles.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lblTexto.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-		// 6. Añadir componentes al panel (verticalmente)
 		this.add(lblTexto);
 		this.add(panelControles);
 	}

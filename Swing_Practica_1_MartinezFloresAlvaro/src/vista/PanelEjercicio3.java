@@ -34,28 +34,24 @@ public class PanelEjercicio3 extends JPanel implements ActionListener {
 						BorderFactory.createLineBorder(Color.BLUE), 
 						"Ejercicio3"));
 
-		// 1. Usamos BoxLayout(Y_AXIS) para apilar verticalmente
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		// 2. Crear los componentes
 		lblTexto = new JLabel("En un lugar de la Mancha, de cuyo nombre...");
 		fuenteOriginal = lblTexto.getFont();
-		lblTexto.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinear texto
+		lblTexto.setAlignmentX(Component.LEFT_ALIGNMENT); 
 
 		radioPequenio = new JRadioButton("Pequeño");
 		radioMediano = new JRadioButton("Mediano");
 		radioGrande = new JRadioButton("Grande");
 		radioMuyGrande = new JRadioButton("Muy Grande");
 
-		// 3. Panel INTERNO para los radios (alineado a la izquierda)
 		JPanel panelRadios = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panelRadios.add(radioPequenio);
 		panelRadios.add(radioMediano);
 		panelRadios.add(radioGrande);
 		panelRadios.add(radioMuyGrande);
-		panelRadios.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinear panel
+		panelRadios.setAlignmentX(Component.LEFT_ALIGNMENT); 
 
-		// 4. Lógica de ButtonGroup y Listeners
 		grupoRadios = new ButtonGroup();
 		grupoRadios.add(radioPequenio);
 		grupoRadios.add(radioMediano);
@@ -70,7 +66,6 @@ public class PanelEjercicio3 extends JPanel implements ActionListener {
 		radioGrande.addActionListener(this);
 		radioMuyGrande.addActionListener(this);
 
-		// 5. Añadir componentes al panel (verticalmente)
 		this.add(lblTexto);
 		this.add(panelRadios);
 	}
